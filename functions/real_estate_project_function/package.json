@@ -1,0 +1,9 @@
+{
+	"name": "real_estate_project_function",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "sonybravia4798@gmail.com",
+	"dependencies": {
+		"zcatalyst-sdk-node": "latest"
+	}
+}

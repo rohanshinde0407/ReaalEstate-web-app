@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Project - Panoramic View</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .menu {
+            background-color: #444;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+        .menu a:hover {
+            background-color: #666;
+        }
+        .content {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Real Estate Project</h1>
+</header>
+
+<div class="menu">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+</div>
+
+<!-- Original Image -->
+<img id="panorama" src="image1.jpg" alt="Panoramic View">
+
+<!-- A-Frame Scene for Panoramic View -->
+<a-scene>
+    <a-sky id="panoramic-view" src="image1.jpg" rotation="0 -130 0" drag-rotate-component speed="1"></a-sky>
+</a-scene>
+
+<!-- JavaScript for Enabling Panoramic View on Click -->
+<script>
+    document.getElementById("panorama").addEventListener("click", function() {
+        this.style.display = "none"; // Hide the original image
+        var sky = document.getElementById("panoramic-view");
+        sky.setAttribute("visible", true); // Show the panoramic view
+    });
+</script>
+
+<!-- JavaScript for Adding Motion to Panoramic View -->
+<script>
+    AFRAME.registerComponent('drag-rotate-component', {
+        schema: { speed: { default: 1 } },
+        init: function () {
+            this.ifMouseDown = false;
+            this.x_cord = 0;
+            this.y_cord = 0;
+            this.el.addEventListener('mousedown', this.OnDocumentMouseDown.bind(this));
+            this.el.addEventListener('mouseup', this.OnDocumentMouseUp.bind(this));
+            this.el.addEventListener('mousemove', this.OnDocumentMouseMove.bind(this));
+        },
+        OnDocumentMouseDown: function (event) {
+            this.ifMouseDown = true;
+            this.x_cord = event.clientX;
+            this.y_cord = event.clientY;
+        },
+        OnDocumentMouseUp: function () { this.ifMouseDown = false; },
+        OnDocumentMouseMove: function (event) {
+            if (this.ifMouseDown) {
+                var temp_x = event.clientX - this.x_cord;
+                var temp_y = event.clientY - this.y_cord;
+                if (Math.abs(temp_y) > Math.abs(temp_x)) {
+                    this.el.object3D.rotateY(temp_x * 0.01 * this.data.speed);
+                } else {
+                    this.el.object3D.rotateX(temp_y * 0.01 * this.data.speed);
+                }
+                this.x_cord = event.clientX;
+                this.y_cord = event.clientY;
+            }
+        }
+    });
+</script>
+
+<!-- Ensure content starts below the header -->
+<div class="content">
+    <!-- Your main content goes here -->
+</div>
+
+</body>
+</html>

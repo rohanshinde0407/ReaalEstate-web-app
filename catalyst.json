@@ -1,0 +1,18 @@
+{
+  "functions": {
+    "targets": [
+      "real_estate_project_function"
+    ],
+    "ignore": [],
+    "source": "functions"
+  },
+  "client": {
+    "source": "client"
+  },
+  "appsail": [
+    {
+      "source": "C:\\catalyst Projects\\realestate catalyst\\appsail-nodejs",
+      "name": "AppSail"
+    }
+  ]
+}

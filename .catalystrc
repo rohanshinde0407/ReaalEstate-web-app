@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "22056000000039001",
+      "name": "RealEstateProject",
+      "domain": {
+        "id": "10080555317",
+        "name": "realestateproject-849034992.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "849034992",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
